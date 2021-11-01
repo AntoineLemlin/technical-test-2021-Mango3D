@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Container,
+  Paper,
+  CssBaseline,
+  ThemeProvider,
+  createMuiTheme,
+} from "@material-ui/core";
+import { BrowserRouter, Route } from "react-router-dom";
+import HomeScreen from "./components/HomeScreen";
+import ChooseScreen from "./components/ChooseScreen";
 
+const theme = createMuiTheme({
+  typography: {
+    h1: { fontWeight: "bold" },
+    h2: {
+      fontSize: "2rem",
+      color: "black",
+    },
+    h3: {
+      fontSize: "1.8rem",
+      fontWeight: "bold",
+      color: "white",
+    },
+    h5: {
+      fontWeight: "bold",
+      fontSize: "1.3rem",
+    },
+    h6: {
+      fontSize: "1.15rem",
+    },
+  },
+  palette: {
+    primary: { main: "#118e16" },
+    contrastText: "#ffffff",
+  },
+});
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container maxWidth="xs">
+          <Paper>
+            <Route path="/" component={HomeScreen} exact={true}></Route>
+            <Route path="/choose" component={ChooseScreen} exact={true}></Route>
+          </Paper>
+        </Container>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
