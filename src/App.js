@@ -5,9 +5,11 @@ import {
   ThemeProvider,
   createTheme,
 } from "@material-ui/core";
+import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import ChooseScreen from "./components/ChooseScreen";
+import View from "./components/View";
 
 const theme = createTheme({
   typography: {
@@ -43,6 +45,8 @@ function App() {
           <Paper>
             <Route path="/" component={HomeScreen} exact={true}></Route>
             <Route path="/choose" component={ChooseScreen} exact={true}></Route>
+            {/* <Route path="/review" component={} exact={true}></Route> */}
+            <Route path="/view" component={View} exact={true}></Route>
           </Paper>
         </Container>
       </ThemeProvider>
