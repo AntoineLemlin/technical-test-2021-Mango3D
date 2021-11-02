@@ -3,13 +3,13 @@ import {
   Paper,
   CssBaseline,
   ThemeProvider,
-  createMuiTheme,
+  createTheme,
 } from "@material-ui/core";
 import { BrowserRouter, Route } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import ChooseScreen from "./components/ChooseScreen";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     h1: { fontWeight: "bold" },
     h2: {

@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   largeLogo: {
-    height: 70,
+    height: 60,
     display: "flex",
     flexDirection: "column",
     marginTop: "25px",

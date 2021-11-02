@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Card, CardActionArea, Typography } from "@material-ui/core";
-import TouchAppIcon from "@material-ui/icons/TouchApp";
 import { useStyles } from "../styles/styles";
 import Logo from "./Logo";
 import Ronald from "./Ronald";

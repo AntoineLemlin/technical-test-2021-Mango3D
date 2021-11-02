@@ -1,4 +1,3 @@
-import { StylesContext } from "@material-ui/styles";
 import React from "react";
 import { useStyles } from "../styles/styles";
 import LogoImage from "../images/logo.png";
