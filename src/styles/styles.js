@@ -5,17 +5,20 @@ export const useStyles = makeStyles((theme) => ({
     height: "100vh",
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "#F9F9F9",
   },
   yellow: {
     background: "radial-gradient(circle, #FFD739 10%, #FFCC00 99%)",
     color: "#ffffff",
+  },
+  greyish: {
+    backgroundColor: "#F9F9F9",
   },
   main: {
     flex: 1,
     overflow: "auto",
     flexDirection: "column",
     display: "flex",
-    color: "#F9F9F9",
   },
   center: {
     display: "flex",
@@ -48,7 +51,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   greyText: {
     color: "#37332A",
-    // marginTop: "20px",
     marginBottom: "1.2rem",
   },
   homepageImage: {
@@ -79,12 +81,12 @@ export const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   card: {
-    height: "80px",
+    height: "100px",
     width: "100%",
     boxShadow: "none",
   },
   media: {
-    height: "70px",
+    height: "50px",
     width: "auto",
     marginLeft: "10px",
   },
@@ -146,6 +148,8 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
+    borderRadius: "30px",
+    backgroundColor: "white",
   },
   infoOrder: {
     display: "flex",
@@ -157,6 +161,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   marginAuto: {
     margin: "auto",
+  },
+  marginRightAuto: {
+    marginRight: "auto",
   },
   bgImage: {
     height: "300px",
@@ -254,5 +261,8 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: "#4ECF00",
     borderRadius: "15px",
     padding: "15px 0",
+  },
+  marginLeftAuto: {
+    marginLeft: "auto",
   },
 }));

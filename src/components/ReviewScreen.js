@@ -5,7 +5,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  CircularProgress,
   Dialog,
   DialogTitle,
   Fade,
@@ -14,24 +13,24 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
+import EditIcon from "@material-ui/icons/Edit";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
 import { useStyles } from "../styles/styles";
 import {
   addToOrder,
-  clearOrder,
   listProducts,
   removeFromOrder,
+  clearOrder,
 } from "../actions";
 import { PromiseProvider } from "mongoose";
 
-const ChooseScreen = (props) => {
+const ReviewScreen = (props) => {
   const styles = useStyles();
   const { state, dispatch } = useContext(Store);
   const [quantity, setQuantity] = useState(1);
@@ -52,17 +51,16 @@ const ChooseScreen = (props) => {
     setIsOpen(false);
   };
 
-  const cancelOrRemoveFromOrder = () => {
-    removeFromOrder(dispatch, product);
-    setIsOpen(false);
+  const cancelOrRemoveFromOrder = (p) => {
+    removeFromOrder(dispatch, p);
   };
-  const {
-    products,
-    loading: loadingProducts,
-    error: errorProducts,
-  } = state.productList;
 
-  const { itemsPrice, orderItems, totalPrice, discountPrice } = state.order;
+  const validateOrder = () => {
+    clearOrder(dispatch);
+    props.history.push("/validation");
+  };
+  const { itemsPrice, orderItems, totalPrice, discountPrice, prepareTime } =
+    state.order;
 
   useEffect(() => {
     listProducts(dispatch);
@@ -121,32 +119,20 @@ const ChooseScreen = (props) => {
           </Box>
           <Box className={[styles.row, styles.around]}>
             <Button
-              onClick={cancelOrRemoveFromOrder}
-              variant="contained"
-              size="large"
-              className={styles.largeButton}
-            >
-              {orderItems.find((x) => x.name === product.name)
-                ? "Remove From Order"
-                : "Cancel"}
-            </Button>
-
-            <Button
               onClick={addToOrderHandler}
               variant="contained"
               color="primary"
               size="large"
               className={styles.largeButton}
             >
-              Add
+              Edit
             </Button>
           </Box>
         </Dialog>
         <Box className={[styles.header, styles.greyish]}>
           <Button
             onClick={() => {
-              clearOrder(dispatch);
-              props.history.push("/");
+              props.history.push("/choose");
             }}
             className={styles.cancel}
           >
@@ -158,61 +144,63 @@ const ChooseScreen = (props) => {
             variant="h6"
             component="h6"
           >
-            Burgers Menu
+            Your order
           </Typography>
         </Box>
         <List className={[styles.list, styles.greyish]}>
-          {loadingProducts ? (
-            <CircularProgress />
-          ) : errorProducts ? (
-            <Alert severity="error">{errorProducts}</Alert>
-          ) : (
-            products.map((product) => (
-              <ListItem>
-                <Card
-                  style={{ width: "100%" }}
-                  className={[styles.card, styles.column, styles.greyish]}
-                >
-                  <CardActionArea
-                    onClick={() => previewProduct(product.id)}
-                    className={styles.row}
-                  >
-                    <CardMedia
-                      component="img"
-                      alt={product.name}
-                      image={product.image}
-                      className={[styles.media, styles.marginRightAuto]}
-                    />
-                    <CardContent className={styles.content}>
-                      <Typography
-                        gutterBottom
-                        variant="body2"
-                        color="textPrimary"
-                        component="p"
-                      >
-                        {product.name}
-                      </Typography>
-                      <Box className={styles.cardFooter}>
-                        <Typography
-                          variant="body2"
-                          color="textSecondary"
-                          component="p"
-                        >
-                          {product.price} $
-                        </Typography>
-                      </Box>
-                    </CardContent>
-                  </CardActionArea>
+          {orderItems.map((orderItem) => (
+            <ListItem>
+              <Card
+                style={{ width: "100%" }}
+                className={[styles.card, styles.column, styles.greyish]}
+              >
+                <Box className={[styles.row, styles.marginLeftAuto]}>
                   <Button
                     className={styles.marginLeftAuto}
-                    onClick={() => productClickHandler(product)}
+                    onClick={() => productClickHandler(orderItem)}
                   >
-                    <AddShoppingCart />
+                    <EditIcon />
                   </Button>
-                </Card>
-              </ListItem>
-            ))
-          )}
+                  <Button
+                    className={styles.marginLeftAuto}
+                    onClick={() => cancelOrRemoveFromOrder(orderItem)}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                </Box>
+                <CardActionArea
+                  onClick={() => previewProduct(orderItem.id)}
+                  className={styles.row}
+                >
+                  <CardMedia
+                    component="img"
+                    alt={orderItem.name}
+                    image={orderItem.image}
+                    className={styles.media}
+                  />
+                  <CardContent className={styles.content}>
+                    <Typography
+                      gutterBottom
+                      variant="body2"
+                      color="textPrimary"
+                      component="p"
+                    >
+                      {orderItem.name}
+                    </Typography>
+                    <Box className={[styles.cardFooter, styles.row]}>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {orderItem.quantity} X {orderItem.price} $
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </ListItem>
+          ))}
         </List>
         <Box className={styles.infoContainer}>
           <Box className={[styles.space]}>
@@ -234,15 +222,21 @@ const ChooseScreen = (props) => {
                 ${totalPrice ? totalPrice : 0}
               </Box>
             </Box>
+            <Box className={styles.infoOrder}>
+              <Box>Prepare Time:</Box>{" "}
+              <Box className={styles.setToRight}>
+                {prepareTime ? prepareTime : 0} mins
+              </Box>
+            </Box>
           </Box>
           <Button
-            onClick={previewOrderHandler}
+            onClick={validateOrder}
             variant="contained"
             color="primary"
             disabled={orderItems.length === 0}
             className={styles.largeButton}
           >
-            Review my cart
+            Checkout & Payement <ArrowRightAltIcon />
           </Button>
         </Box>
       </Box>
@@ -250,4 +244,4 @@ const ChooseScreen = (props) => {
   );
 };
 
-export default ChooseScreen;
+export default ReviewScreen;

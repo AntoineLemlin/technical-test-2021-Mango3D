@@ -1,16 +1,8 @@
 import {
   Box,
   Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
   CircularProgress,
-  Dialog,
-  DialogTitle,
   Fade,
-  List,
-  ListItem,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -19,7 +11,6 @@ import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,12 +22,7 @@ import {
 
 import { Store } from "./Store";
 import { useStyles } from "../styles/styles";
-import {
-  addToOrder,
-  clearOrder,
-  listProducts,
-  removeFromOrder,
-} from "../actions";
+import { addToOrder, listProducts, removeFromOrder } from "../actions";
 import { PromiseProvider } from "mongoose";
 import { useLocation } from "react-router";
 
@@ -44,25 +30,19 @@ const View = (props) => {
   const styles = useStyles();
   const { state, dispatch } = useContext(Store);
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState({});
   const location = useLocation();
   const idProduct = location.search.substring(1);
 
   const addToOrderHandler = (product) => {
     addToOrder(dispatch, { ...product, quantity });
+    props.history.push("/choose");
   };
 
-  const cancelOrRemoveFromOrder = () => {
-    removeFromOrder(dispatch, product);
-  };
   const {
     products,
     loading: loadingProducts,
     error: errorProducts,
   } = state.productList;
-
-  const { itemsPrice, orderItems, itemsCount, totalPrice, discountPrice } =
-    state.order;
 
   useEffect(() => {
     listProducts(dispatch);
@@ -81,7 +61,7 @@ const View = (props) => {
               <>
                 <Box
                   style={{
-                    backgroundImage: `url(${product.image})`,
+                    background: `url("${product.coverImage}")`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
@@ -95,6 +75,7 @@ const View = (props) => {
                   >
                     <ArrowBackIosIcon className={styles.arrowIcon} />
                   </Button>
+                  {console.log(product.coverImage)}
                 </Box>
                 <Box style={{ zIndex: 1 }} className={styles.viewMain}>
                   <Box className={styles.viewInfo}>
@@ -137,7 +118,7 @@ const View = (props) => {
                           variant="h2"
                           component="h2"
                         >
-                          {product.price}
+                          {product.price.toFixed(2)}
                         </Typography>
                       ) : (
                         ""

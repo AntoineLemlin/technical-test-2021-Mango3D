@@ -43,15 +43,18 @@ function reducer(state, action) {
         : [...state.order.orderItems, item];
 
       const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
-      const itemsPrice = orderItems.reduce(
-        (a, c) => a + c.quantity * c.price,
+      const itemsPrice = orderItems
+        .reduce((a, c) => a + c.quantity * c.price, 0)
+        .toFixed(2);
+      const discountPrice = orderItems
+        .reduce((a, c) => a + c.quantity * ((c.price * c.discount) / 100), 0)
+        .toFixed(2);
+      const totalPrice = (itemsPrice - discountPrice).toFixed(2);
+
+      const prepareTime = orderItems.reduce(
+        (a, c) => a + c.prepareTime * c.quantity,
         0
       );
-      const discountPrice = orderItems.reduce(
-        (a, c) => a + c.quantity * ((c.price * c.discount) / 100),
-        0
-      );
-      const totalPrice = itemsPrice - discountPrice;
 
       return {
         ...state,
@@ -62,6 +65,7 @@ function reducer(state, action) {
           totalPrice,
           itemsCount,
           itemsPrice,
+          prepareTime,
         },
       };
     }
@@ -71,13 +75,18 @@ function reducer(state, action) {
       );
 
       const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
-      const itemsPrice = orderItems.reduce(
-        (a, c) => a + c.quantity * c.price,
+      const itemsPrice = orderItems
+        .reduce((a, c) => a + c.quantity * c.price, 0)
+        .toFixed(2);
+      const discountPrice = orderItems
+        .reduce((a, c) => a + c.quantity * ((c.price * c.discount) / 100), 0)
+        .toFixed(2);
+      const totalPrice = (itemsPrice - discountPrice).toFixed(2);
+
+      const prepareTime = orderItems.reduce(
+        (a, c) => a + c.prepareTime * c.quantity,
         0
       );
-      const discountPrice = orderItems.map((x) => (x.discount * x.price) / 100);
-
-      const totalPrice = itemsPrice;
 
       return {
         ...state,
@@ -88,6 +97,7 @@ function reducer(state, action) {
           totalPrice,
           itemsCount,
           itemsPrice,
+          prepareTime,
         },
       };
     }

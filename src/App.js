@@ -10,6 +10,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import ChooseScreen from "./components/ChooseScreen";
 import View from "./components/View";
+import ReviewScreen from "./components/ReviewScreen";
+import OrderValidation from "./components/OrderValidation";
 
 const theme = createTheme({
   typography: {
@@ -32,7 +34,7 @@ const theme = createTheme({
     },
   },
   palette: {
-    primary: { main: "#118e16" },
+    primary: { main: "#F9F9F9" },
     contrastText: "#ffffff",
   },
 });
@@ -45,8 +47,13 @@ function App() {
           <Paper>
             <Route path="/" component={HomeScreen} exact={true}></Route>
             <Route path="/choose" component={ChooseScreen} exact={true}></Route>
-            {/* <Route path="/review" component={} exact={true}></Route> */}
+            <Route path="/review" component={ReviewScreen} exact={true}></Route>
             <Route path="/view" component={View} exact={true}></Route>
+            <Route
+              path="/validation"
+              component={OrderValidation}
+              exact={true}
+            ></Route>
           </Paper>
         </Container>
       </ThemeProvider>
