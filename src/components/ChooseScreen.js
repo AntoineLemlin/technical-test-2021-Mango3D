@@ -80,7 +80,7 @@ const ChooseScreen = (props) => {
   };
 
   const previewProduct = (p) => {
-    props.history.push({ pathname: "/view", state: { product: lastProduct } });
+    props.history.push({ pathname: "/view", search: "?" + p });
   };
 
   return (
@@ -183,7 +183,7 @@ const ChooseScreen = (props) => {
                       alt={product.name}
                       image={product.image}
                       className={styles.media}
-                      onClick={() => previewProduct(product)}
+                      onClick={() => previewProduct(product.id)}
                     />
                     <CardContent className={styles.content}>
                       <Button onClick={() => productClickHandler(product)}>

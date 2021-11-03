@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGODB_URI);
 const Product = mongoose.model(
   "products",
   new mongoose.Schema({
+    id: Number,
     name: String,
     description: String,
     image: String,

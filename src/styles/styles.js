@@ -106,9 +106,10 @@ export const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   largeInput: {
-    width: "60px!important",
+    width: "30px!important",
     padding: "0!important",
-    fontSize: "35px!important",
+    fontSize: "20px!important",
+    height: "30px!important",
     textAlign: "center!important",
   },
   cancel: {
@@ -129,7 +130,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   bordered: {
-    borderTop: "2px solid black",
+    borderTop: "2px solid lightgrey",
     margin: 5,
   },
   around: {
@@ -156,5 +157,102 @@ export const useStyles = makeStyles((theme) => ({
   },
   marginAuto: {
     margin: "auto",
+  },
+  bgImage: {
+    height: "300px",
+  },
+  viewMain: {
+    marginTop: "-50px",
+    backgroundColor: "#F9F9F9",
+    borderRadius: "36px ",
+    color: "#F9F9F9",
+    position: "relative",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      left: "42.5%",
+      top: 0,
+      width: "15%",
+      height: "2px",
+      backgroundColor: "grey",
+      marginTop: "10px",
+      borderRadius: "2px",
+    },
+  },
+  viewInfo: {
+    display: "inline-block",
+    marginTop: "25px",
+    marginLeft: "25px",
+  },
+  discount: {
+    color: "#2CB4F3",
+    fontSize: "0.8rem",
+    backgroundColor: "#E8F5FD",
+    width: "auto",
+    borderRadius: "10px",
+    padding: "10px 15px",
+    width: "90px",
+  },
+  viewTitle: {
+    fontWeight: "bold",
+    marginTop: "10px",
+  },
+  viewPrices: {
+    display: "flex",
+    gap: "60px",
+    alignItems: "center ",
+  },
+  viewOldPrice: {
+    textDecoration: "line-through",
+    fontSize: "1.3rem",
+  },
+  viewPrice: {
+    display: "flex",
+    gap: "3px",
+    "&::before": {
+      content: '"$"',
+      fontSize: "1rem",
+      marginTop: "5px",
+    },
+  },
+  viewDescription: {
+    color: "black",
+  },
+  burgerInfoContainer: {
+    display: "flex",
+    justifyContent: "space-evenly",
+  },
+  burgerInfo: {
+    display: "flex",
+    flexDirection: "column",
+    color: "black",
+    marginTop: "15px",
+    flex: "33%",
+  },
+  viewSize: {
+    fontSize: "1rem",
+    color: "grey",
+  },
+  viewSizeInfo: {
+    fontSize: "1rem",
+    color: "black",
+  },
+  quantity: {
+    display: "block",
+    width: "40%",
+  },
+  viewOrder: {
+    display: "flex",
+    marginTop: "50px",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "-50px",
+  },
+  viewAddToCart: {
+    display: "flex",
+    width: "55%",
+    backgroundColor: "#4ECF00",
+    borderRadius: "15px",
+    padding: "15px 0",
   },
 }));
