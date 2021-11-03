@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#F9F9F9",
@@ -87,7 +88,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: "50px",
-    width: "50px",
+    width: "auto",
     marginLeft: "10px",
   },
   content: {
