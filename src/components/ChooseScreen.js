@@ -181,7 +181,7 @@ const ChooseScreen = (props) => {
                       component="img"
                       alt={product.name}
                       image={product.image}
-                      className={[styles.media, styles.marginRightAuto]}
+                      className={styles.media}
                     />
                     <CardContent className={styles.content}>
                       <Typography
