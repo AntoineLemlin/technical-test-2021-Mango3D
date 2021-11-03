@@ -86,7 +86,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     boxShadow: "none",
   },
-  media: {
+  imageCard: {
     height: "50px",
     width: "auto",
     marginLeft: "10px",
