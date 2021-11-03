@@ -87,8 +87,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: "50px",
-    width: "auto",
-    width: "auto",
+    width: "50px",
     marginLeft: "10px",
   },
   content: {
