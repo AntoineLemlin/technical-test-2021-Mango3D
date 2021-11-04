@@ -86,9 +86,9 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     boxShadow: "none",
   },
-  media: {
+  mediaHamburger: {
     height: "50px",
-    width: "auto",
+    width: "100px",
     marginLeft: "10px",
   },
   content: {

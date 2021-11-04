@@ -28,8 +28,8 @@ const Product = mongoose.model(
 
 app.get("/api/products", async (req, res) => {
   try {
-    const products = await Product.insertMany(data.products);
-    res.send(products);
+    // const products = await Product.insertMany(data.products);
+    res.send(data.products);
   } catch (err) {
     next(err);
   }
