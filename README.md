@@ -32,6 +32,8 @@ _ex: localhost:3000_
 
 ### Si l'application n'arrive pas à "fetch" les données, vérifiez si vous avez un compte créé sur https://cloud.mongodb.com/ ainsi qu'une collection.
 
+<br>
+
 ## Credits
 
 ---
