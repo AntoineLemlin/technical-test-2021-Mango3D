@@ -12,6 +12,7 @@
 
 ### Pour lancer le projet, faites un clone de ce repo puis exécutez ces commandes :
 
+`npm install` <br>
 `npm run start` <br>
 `npm run server`
 
