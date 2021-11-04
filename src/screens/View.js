@@ -22,7 +22,7 @@ import {
 
 import { Store } from "../Store";
 import { useStyles } from "../styles/styles";
-import { addToOrder, listProducts, removeFromOrder } from "../actions";
+import { addToOrder, listProducts } from "../actions";
 import { useLocation } from "react-router";
 
 const View = (props) => {
@@ -56,7 +56,7 @@ const View = (props) => {
           <Alert severity="error">{errorProducts}</Alert>
         ) : (
           products.map((product) => {
-            return product.id == idProduct ? (
+            return product.id === idProduct ? (
               <>
                 <Box
                   style={{

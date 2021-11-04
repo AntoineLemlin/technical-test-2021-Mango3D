@@ -197,7 +197,6 @@ export const useStyles = makeStyles((theme) => ({
     color: "#2CB4F3",
     fontSize: "0.8rem",
     backgroundColor: "#E8F5FD",
-    width: "auto",
     borderRadius: "10px",
     padding: "10px 15px",
     width: "90px",
@@ -265,9 +264,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   marginLeftAuto: {
     marginLeft: "auto",
-  },
-  marginRightAuto: {
-    marginRight: "auto",
   },
   fullWidth: {
     width: "100%",
