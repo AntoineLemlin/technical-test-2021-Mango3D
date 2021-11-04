@@ -3,6 +3,7 @@ import {
   ORDER_ADD_ITEM,
   ORDER_CLEAR,
   ORDER_REMOVE_ITEM,
+  ORDER_CLEAR_ITEM,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -37,10 +38,17 @@ function reducer(state, action) {
         (x) => x.name === item.name
       );
       const orderItems = existItem
-        ? state.order.orderItems.map((x) =>
-            x.name === existItem.name ? item : x
-          )
+        ? state.order.orderItems.map((x) => {
+            if (x.name === existItem.name) {
+              x.quantity = x.quantity + 1;
+              return x;
+            } else {
+              return x;
+            }
+          })
         : [...state.order.orderItems, item];
+
+      console.log(orderItems);
 
       const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
       const itemsPrice = orderItems
@@ -70,6 +78,53 @@ function reducer(state, action) {
       };
     }
     case ORDER_REMOVE_ITEM: {
+      const item = action.payload;
+      const existItem = state.order.orderItems.find(
+        (x) => x.name === item.name
+      );
+
+      const orderItems =
+        item.quantity > 1
+          ? state.order.orderItems.map((x) => {
+              if (x.name === existItem.name) {
+                x.quantity = x.quantity - 1;
+                return x;
+              } else {
+                return x;
+              }
+            })
+          : state.order.orderItems.filter(
+              (x) => x.name !== action.payload.name
+            );
+
+      const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
+      const itemsPrice = orderItems
+        .reduce((a, c) => a + c.quantity * c.price, 0)
+        .toFixed(2);
+      const discountPrice = orderItems
+        .reduce((a, c) => a + c.quantity * ((c.price * c.discount) / 100), 0)
+        .toFixed(2);
+      const totalPrice = (itemsPrice - discountPrice).toFixed(2);
+
+      const prepareTime = orderItems.reduce(
+        (a, c) => a + c.prepareTime * c.quantity,
+        0
+      );
+
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          orderItems,
+          discountPrice,
+          totalPrice,
+          itemsCount,
+          itemsPrice,
+          prepareTime,
+        },
+      };
+    }
+    case ORDER_CLEAR_ITEM: {
       const orderItems = state.order.orderItems.filter(
         (x) => x.name !== action.payload.name
       );

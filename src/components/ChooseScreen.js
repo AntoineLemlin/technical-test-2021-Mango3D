@@ -36,26 +36,7 @@ const ChooseScreen = (props) => {
   const { state, dispatch } = useContext(Store);
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-  const [product, setProduct] = useState({});
 
-  const closeHandler = () => {
-    setIsOpen(false);
-  };
-
-  const productClickHandler = (p) => {
-    setProduct(p);
-    setIsOpen(true);
-  };
-
-  const addToOrderHandler = () => {
-    addToOrder(dispatch, { ...product, quantity });
-    setIsOpen(false);
-  };
-
-  const cancelOrRemoveFromOrder = () => {
-    removeFromOrder(dispatch, product);
-    setIsOpen(false);
-  };
   const {
     products,
     loading: loadingProducts,
@@ -79,69 +60,6 @@ const ChooseScreen = (props) => {
   return (
     <Fade in={true}>
       <Box className={styles.root}>
-        <Dialog
-          maxWidth="xs"
-          fullWidth={true}
-          open={isOpen}
-          onClose={closeHandler}
-        >
-          <DialogTitle className={styles.center}>
-            Add {product.name}
-          </DialogTitle>
-          <Box className={[styles.row, styles.center]}>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={quantity === 1}
-              onClick={(e) => quantity > 1 && setQuantity(quantity - 1)}
-            >
-              <RemoveIcon />
-            </Button>
-            <TextField
-              inputProps={{ className: styles.largeInput }}
-              InputProps={{
-                bar: true,
-                inputProps: {
-                  className: styles.largeInput,
-                },
-              }}
-              className={(styles.largeNumber, styles.marginAuto)}
-              type="number"
-              variant="filled"
-              min={1}
-              value={quantity}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={(e) => setQuantity(quantity + 1)}
-            >
-              <AddIcon />
-            </Button>
-          </Box>
-          <Box className={[styles.row, styles.around]}>
-            <Button
-              onClick={cancelOrRemoveFromOrder}
-              variant="contained"
-              size="large"
-              className={styles.largeButton}
-            >
-              {orderItems.find((x) => x.name === product.name)
-                ? "Remove From Order"
-                : "Cancel"}
-            </Button>
-
-            <Button
-              onClick={addToOrderHandler}
-              variant="contained"
-              color="primary"
-              size="large"
-              className={styles.largeButton}
-            >
-              Add
-            </Button>
-          </Box>
-        </Dialog>
         <Box className={[styles.header, styles.greyish]}>
           <Button
             onClick={() => {
@@ -181,7 +99,7 @@ const ChooseScreen = (props) => {
                       component="img"
                       alt={product.name}
                       image={product.image}
-                      className={styles.imageCard}
+                      className={styles.media}
                     />
                     <CardContent className={styles.content}>
                       <Typography
@@ -205,7 +123,9 @@ const ChooseScreen = (props) => {
                   </CardActionArea>
                   <Button
                     className={styles.marginLeftAuto}
-                    onClick={() => productClickHandler(product)}
+                    onClick={() => {
+                      addToOrder(dispatch, { ...product, quantity });
+                    }}
                   >
                     <AddShoppingCart />
                   </Button>

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   ORDER_ADD_ITEM,
   ORDER_CLEAR,
+  ORDER_CLEAR_ITEM,
   ORDER_REMOVE_ITEM,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
@@ -38,6 +39,12 @@ export const removeFromOrder = async (dispatch, item) => {
   });
 };
 
+export const clearItemFromOrder = async (dispatch, item) => {
+  return dispatch({
+    type: ORDER_CLEAR_ITEM,
+    payload: item,
+  });
+};
 export const clearOrder = async (dispatch) => {
   return dispatch({
     type: ORDER_CLEAR,

@@ -27,6 +27,7 @@ import {
   listProducts,
   removeFromOrder,
   clearOrder,
+  clearItemFromOrder,
 } from "../actions";
 import { PromiseProvider } from "mongoose";
 
@@ -34,26 +35,6 @@ const ReviewScreen = (props) => {
   const styles = useStyles();
   const { state, dispatch } = useContext(Store);
   const [quantity, setQuantity] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
-  const [product, setProduct] = useState({});
-
-  const closeHandler = () => {
-    setIsOpen(false);
-  };
-
-  const productClickHandler = (p) => {
-    setProduct(p);
-    setIsOpen(true);
-  };
-
-  const addToOrderHandler = () => {
-    addToOrder(dispatch, { ...product, quantity });
-    setIsOpen(false);
-  };
-
-  const cancelOrRemoveFromOrder = (p) => {
-    removeFromOrder(dispatch, p);
-  };
 
   const validateOrder = () => {
     clearOrder(dispatch);
@@ -66,69 +47,9 @@ const ReviewScreen = (props) => {
     listProducts(dispatch);
   }, [dispatch]);
 
-  const previewOrderHandler = () => {
-    props.history.push("/review");
-  };
-
-  const previewProduct = (p) => {
-    props.history.push({ pathname: "/view", search: "?" + p });
-  };
-
   return (
     <Fade in={true}>
       <Box className={styles.root}>
-        <Dialog
-          maxWidth="xs"
-          fullWidth={true}
-          open={isOpen}
-          onClose={closeHandler}
-        >
-          <DialogTitle className={styles.center}>
-            Add {product.name}
-          </DialogTitle>
-          <Box className={[styles.row, styles.center]}>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={quantity === 1}
-              onClick={(e) => quantity > 1 && setQuantity(quantity - 1)}
-            >
-              <RemoveIcon />
-            </Button>
-            <TextField
-              inputProps={{ className: styles.largeInput }}
-              InputProps={{
-                bar: true,
-                inputProps: {
-                  className: styles.largeInput,
-                },
-              }}
-              className={(styles.largeNumber, styles.marginAuto)}
-              type="number"
-              variant="filled"
-              min={1}
-              value={quantity}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={(e) => setQuantity(quantity + 1)}
-            >
-              <AddIcon />
-            </Button>
-          </Box>
-          <Box className={[styles.row, styles.around]}>
-            <Button
-              onClick={addToOrderHandler}
-              variant="contained"
-              color="primary"
-              size="large"
-              className={styles.largeButton}
-            >
-              Edit
-            </Button>
-          </Box>
-        </Dialog>
         <Box className={[styles.header, styles.greyish]}>
           <Button
             onClick={() => {
@@ -157,28 +78,19 @@ const ReviewScreen = (props) => {
                 <Box className={[styles.row, styles.marginLeftAuto]}>
                   <Button
                     className={styles.marginLeftAuto}
-                    onClick={() => productClickHandler(orderItem)}
-                  >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    className={styles.marginLeftAuto}
-                    onClick={() => cancelOrRemoveFromOrder(orderItem)}
+                    onClick={() => clearItemFromOrder(dispatch, orderItem)}
                   >
                     <RemoveIcon />
                   </Button>
                 </Box>
-                <CardActionArea
-                  onClick={() => previewProduct(orderItem.id)}
-                  className={styles.row}
-                >
+                <Box className={[styles.row, styles.fullWidth]}>
                   <CardMedia
                     component="img"
                     alt={orderItem.name}
                     image={orderItem.image}
                     className={styles.media}
                   />
-                  <CardContent className={styles.content}>
+                  <CardContent className={[styles.content, styles.between]}>
                     <Typography
                       gutterBottom
                       variant="body2"
@@ -188,16 +100,67 @@ const ReviewScreen = (props) => {
                       {orderItem.name}
                     </Typography>
                     <Box className={[styles.cardFooter, styles.row]}>
+                      <Box
+                        className={[
+                          styles.quantity,
+                          styles.row,
+                          styles.marginRightQuantity,
+                        ]}
+                      >
+                        <Button
+                          variant="contained"
+                          color="grey"
+                          disabled={orderItem.quantity === 1}
+                          onClick={() => removeFromOrder(dispatch, orderItem)}
+                          style={{
+                            maxWidth: "30px",
+                            maxHeight: "30px",
+                            minWidth: "30px",
+                            minHeight: "30px",
+                          }}
+                        >
+                          <RemoveIcon />
+                        </Button>
+                        <TextField
+                          inputProps={{ className: styles.largeInput }}
+                          InputProps={{
+                            bar: true,
+                            inputProps: {
+                              className: styles.largeInput,
+                            },
+                          }}
+                          className={(styles.largeNumber, styles.marginAuto)}
+                          type="tel"
+                          variant="filled"
+                          min={1}
+                          value={orderItem.quantity}
+                        />
+                        <Button
+                          variant="contained"
+                          color="grey"
+                          onClick={() =>
+                            addToOrder(dispatch, { ...orderItem, quantity })
+                          }
+                          style={{
+                            maxWidth: "30px",
+                            maxHeight: "30px",
+                            minWidth: "30px",
+                            minHeight: "30px",
+                          }}
+                        >
+                          <AddIcon />
+                        </Button>
+                      </Box>
                       <Typography
                         variant="body2"
                         color="textSecondary"
                         component="p"
                       >
-                        {orderItem.quantity} X {orderItem.price} $
+                        {orderItem.price} $
                       </Typography>
                     </Box>
                   </CardContent>
-                </CardActionArea>
+                </Box>
               </Card>
             </ListItem>
           ))}

@@ -210,7 +210,13 @@ const View = (props) => {
                         </Box>
                       </Box>
                     </Box>
-                    <Box className={styles.viewOrder}>
+                    <Box
+                      className={[
+                        styles.viewOrder,
+                        styles.row,
+                        styles.marginLeftAuto,
+                      ]}
+                    >
                       <Box
                         className={[styles.row, styles.center, styles.quantity]}
                       >
@@ -263,7 +269,10 @@ const View = (props) => {
                         variant="contained"
                         color="primary"
                         size="large"
-                        className={styles.viewAddToCart}
+                        className={[
+                          styles.viewAddToCart,
+                          styles.marginLeftOrderButton,
+                        ]}
                       >
                         <FontAwesomeIcon
                           style={{ marginRight: "5px" }}

@@ -86,7 +86,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     boxShadow: "none",
   },
-  imageCard: {
+  media: {
     height: "50px",
     width: "auto",
     marginLeft: "10px",
@@ -96,6 +96,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
+    width: "100%",
   },
   list: {
     overflow: "auto",
@@ -247,7 +248,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   quantity: {
     display: "block",
-    width: "40%",
   },
   viewOrder: {
     display: "flex",
@@ -265,5 +265,17 @@ export const useStyles = makeStyles((theme) => ({
   },
   marginLeftAuto: {
     marginLeft: "auto",
+  },
+  marginRightAuto: {
+    marginRight: "auto",
+  },
+  fullWidth: {
+    width: "100%",
+  },
+  marginRightQuantity: {
+    marginRight: "110px",
+  },
+  marginLeftOrderButton: {
+    marginLeft: "20px",
   },
 }));
