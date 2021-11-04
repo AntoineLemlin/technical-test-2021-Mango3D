@@ -1,6 +1,14 @@
 # Test Technique Mango 3D 2021
 
-### Ce projet a été réalisé en 15h réparties sur plusieurs jours.
+## Description
+
+---
+
+### Ce projet a été réalisé avec React et Material UI en 15h réparties sur plusieurs jours comme je n'avais jamais touché à un contexte react avant.
+
+## Lancement
+
+---
 
 ### Pour lancer le projet, faites un clone de ce repo puis exécutez ces commandes :
 
@@ -11,9 +19,13 @@
 
 _ex: localhost:3000_
 
+## API
+
 ---
 
 ### Si vous voulez voir l'API des produits, allez sur http://localhost:5000/api/products
+
+## Credits
 
 ---
 
