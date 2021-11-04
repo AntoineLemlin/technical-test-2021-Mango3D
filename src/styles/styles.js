@@ -122,8 +122,8 @@ export const useStyles = makeStyles((theme) => ({
     left: 0,
     marginTop: "35px",
     marginLeft: "20px",
-    minWidth: "40px",
-    maxWidth: "40px",
+    minWidth: "40px!important",
+    maxWidth: "40px!important",
     backgroundColor: "#FCF9F1",
     textAlign: "center",
     borderRadius: "10px",
@@ -258,9 +258,9 @@ export const useStyles = makeStyles((theme) => ({
   viewAddToCart: {
     display: "flex",
     width: "55%",
-    backgroundColor: "#4ECF00",
-    borderRadius: "15px",
-    padding: "15px 0",
+    backgroundColor: "#4ECF00!important",
+    borderRadius: "15px!important",
+    padding: "15px 0!important",
   },
   marginLeftAuto: {
     marginLeft: "auto",
