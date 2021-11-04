@@ -7,7 +7,7 @@
 `npm run start` <br>
 `npm run server`
 
-### Quand les deux commandes ont étées exécutées, allez sur le localhost suivi du port que le `npm run start` vous a attribué.
+### Quand les deux commandes ont été exécutées, allez sur le localhost suivi du port que le `npm run start` vous a attribué.
 
 _ex: localhost:3000_
 
