@@ -67,10 +67,7 @@ const ReviewScreen = (props) => {
         <List className={[styles.list, styles.greyish]}>
           {orderItems.map((orderItem) => (
             <ListItem>
-              <Card
-                style={{ width: "100%" }}
-                className={[styles.card, styles.column, styles.greyish]}
-              >
+              <Card className={[styles.card, styles.column, styles.greyish]}>
                 <Box className={[styles.row, styles.marginLeftAuto]}>
                   <Button
                     className={styles.marginLeftAuto}
@@ -84,7 +81,7 @@ const ReviewScreen = (props) => {
                     component="img"
                     alt={orderItem.name}
                     image={orderItem.image}
-                    className={styles.media}
+                    className={styles.mediaHamburger}
                   />
                   <CardContent className={[styles.content, styles.between]}>
                     <Typography

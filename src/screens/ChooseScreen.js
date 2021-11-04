@@ -75,10 +75,7 @@ const ChooseScreen = (props) => {
           ) : (
             products.map((product) => (
               <ListItem key={product.id}>
-                <Card
-                  style={{ width: "100%" }}
-                  className={[styles.card, styles.column, styles.greyish]}
-                >
+                <Card className={[styles.card, styles.column, styles.greyish]}>
                   <CardActionArea
                     onClick={() => previewProduct(product.id)}
                     className={styles.row}
