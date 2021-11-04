@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
@@ -15,6 +14,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import Button from "@material-ui/core/Button";
 
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";

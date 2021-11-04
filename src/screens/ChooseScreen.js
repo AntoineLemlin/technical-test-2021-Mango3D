@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -14,6 +13,7 @@ import {
 import { Alert } from "@material-ui/lab";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
+import Button from "@material-ui/core/Button";
 
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
