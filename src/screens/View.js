@@ -20,10 +20,9 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Store } from "./Store";
+import { Store } from "../Store";
 import { useStyles } from "../styles/styles";
 import { addToOrder, listProducts, removeFromOrder } from "../actions";
-import { PromiseProvider } from "mongoose";
 import { useLocation } from "react-router";
 
 const View = (props) => {

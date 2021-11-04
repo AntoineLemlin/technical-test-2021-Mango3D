@@ -2,11 +2,8 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
-  Dialog,
-  DialogTitle,
   Fade,
   List,
   ListItem,
@@ -16,11 +13,11 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Store } from "./Store";
+import { Store } from "../Store";
 import { useStyles } from "../styles/styles";
 import {
   addToOrder,
@@ -29,7 +26,6 @@ import {
   clearOrder,
   clearItemFromOrder,
 } from "../actions";
-import { PromiseProvider } from "mongoose";
 
 const ReviewScreen = (props) => {
   const styles = useStyles();
@@ -80,7 +76,7 @@ const ReviewScreen = (props) => {
                     className={styles.marginLeftAuto}
                     onClick={() => clearItemFromOrder(dispatch, orderItem)}
                   >
-                    <RemoveIcon />
+                    <DeleteIcon className={styles.reviewIcon} />
                   </Button>
                 </Box>
                 <Box className={[styles.row, styles.fullWidth]}>
@@ -119,7 +115,7 @@ const ReviewScreen = (props) => {
                             minHeight: "30px",
                           }}
                         >
-                          <RemoveIcon />
+                          <RemoveIcon className={styles.reviewIcon} />
                         </Button>
                         <TextField
                           inputProps={{ className: styles.largeInput }}
@@ -148,7 +144,7 @@ const ReviewScreen = (props) => {
                             minHeight: "30px",
                           }}
                         >
-                          <AddIcon />
+                          <AddIcon className={styles.reviewIcon} />
                         </Button>
                       </Box>
                       <Typography

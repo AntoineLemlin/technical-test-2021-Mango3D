@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Card, CardActionArea, Typography } from "@material-ui/core";
 import { useStyles } from "../styles/styles";
-import Logo from "./Logo";
-import Ronald from "./Ronald";
+import Logo from "../components/Logo";
+import Ronald from "../components/Ronald";
 
 const HomeScreen = (props) => {
   const styles = useStyles();

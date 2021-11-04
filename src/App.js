@@ -7,11 +7,11 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import HomeScreen from "./components/HomeScreen";
-import ChooseScreen from "./components/ChooseScreen";
-import View from "./components/View";
-import ReviewScreen from "./components/ReviewScreen";
-import OrderValidation from "./components/OrderValidation";
+import HomeScreen from "./screens/HomeScreen";
+import ChooseScreen from "./screens/ChooseScreen";
+import View from "./screens/View";
+import ReviewScreen from "./screens/ReviewScreen";
+import OrderValidation from "./screens/OrderValidation";
 
 const theme = createTheme({
   typography: {

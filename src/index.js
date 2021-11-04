@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { StoreProvider } from "./components/Store";
+import { StoreProvider } from "./Store";
 
 ReactDOM.render(
   <StoreProvider>

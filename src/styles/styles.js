@@ -79,7 +79,7 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    height: "100%",
+    minHeight: "10px",
   },
   card: {
     height: "100px",
@@ -273,9 +273,27 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   marginRightQuantity: {
-    marginRight: "110px",
+    marginRight: "105px",
   },
   marginLeftOrderButton: {
     marginLeft: "20px",
+  },
+  reviewIcon: {
+    maxWidth: "15px",
+    minWidth: "15px",
+    maxHeight: "15px",
+    minHeight: "15px",
+  },
+  alignItems: {
+    alignItems: "center",
+  },
+  productName: {
+    fontWeight: "bold",
+  },
+  chooseCartIcon: {
+    maxWidth: "20px",
+    minWidth: "20px",
+    maxHeight: "20px",
+    minHeight: "20px",
   },
 }));

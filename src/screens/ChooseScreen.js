@@ -6,36 +6,24 @@ import {
   CardContent,
   CardMedia,
   CircularProgress,
-  Dialog,
-  DialogTitle,
   Fade,
   List,
   ListItem,
-  TextField,
   Typography,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Store } from "./Store";
+import { Store } from "../Store";
 import { useStyles } from "../styles/styles";
-import {
-  addToOrder,
-  clearOrder,
-  listProducts,
-  removeFromOrder,
-} from "../actions";
-import { PromiseProvider } from "mongoose";
+import { addToOrder, clearOrder, listProducts } from "../actions";
 
 const ChooseScreen = (props) => {
   const styles = useStyles();
   const { state, dispatch } = useContext(Store);
   const [quantity, setQuantity] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
 
   const {
     products,
@@ -86,7 +74,7 @@ const ChooseScreen = (props) => {
             <Alert severity="error">{errorProducts}</Alert>
           ) : (
             products.map((product) => (
-              <ListItem>
+              <ListItem key={product.id}>
                 <Card
                   style={{ width: "100%" }}
                   className={[styles.card, styles.column, styles.greyish]}
@@ -107,6 +95,7 @@ const ChooseScreen = (props) => {
                         variant="body2"
                         color="textPrimary"
                         component="p"
+                        className={styles.productName}
                       >
                         {product.name}
                       </Typography>
@@ -127,7 +116,7 @@ const ChooseScreen = (props) => {
                       addToOrder(dispatch, { ...product, quantity });
                     }}
                   >
-                    <AddShoppingCart />
+                    <AddShoppingCart className={styles.chooseCartIcon} />
                   </Button>
                 </Card>
               </ListItem>
